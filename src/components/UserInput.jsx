@@ -1,36 +1,58 @@
-import { useState } from "react";
-
-export default function UserInput() {
-    const [formValues, setFormValues] = useState({"initial":0,"annual":0,"expected":0,"duration":0});
-
-    const handleUpdatedValues = (name, newValue) =>{
-        setFormValues((prevValues)=>{
-            const newValues = {...prevValues, [name]:newValue};
-            return newValues;
-        })
-    }
-
-
+export default function UserInput({ formValues, handleUpdatedValues }) {
   return (
     <section id="user-input">
       <div className="input-group">
         <p>
           <label htmlFor="initial">Initial Investment</label>
-          <input min={0} id="initial" type="number" onChange={(e) => handleUpdatedValues("initial", e.target.value)} value={formValues["initial"]}/>
+          <input
+            required
+            min={0}
+            id="initial"
+            type="number"
+            onChange={(e) =>
+              handleUpdatedValues("initialInvestment", e.target.value)
+            }
+            value={formValues["initialInvestment"]}
+          />
         </p>
         <p>
           <label htmlFor="annual">Annual Investment</label>
-          <input min={0} id="annual" type="number" onChange={(e) => handleUpdatedValues("annual", e.target.value)} value={formValues["annual"]}/>
+          <input
+            required
+            min={0}
+            id="annual"
+            type="number"
+            onChange={(e) =>
+              handleUpdatedValues("annualInvestment", e.target.value)
+            }
+            value={formValues["annualInvestment"]}
+          />
         </p>
       </div>
       <div className="input-group">
         <p>
           <label htmlFor="expected">expected return</label>
-          <input min={0} id="expected" type="number" onChange={(e) => handleUpdatedValues("expected", e.target.value)} value={formValues["expected"]}/>
+          <input
+            required
+            min={0}
+            id="expected"
+            type="number"
+            onChange={(e) =>
+              handleUpdatedValues("expectedReturn", e.target.value)
+            }
+            value={formValues["expectedReturn"]}
+          />
         </p>
         <p>
           <label htmlFor="duration">duration</label>
-          <input min={0} id="duration" type="number" onChange={(e) => handleUpdatedValues("duration", e.target.value)} value={formValues["duration"]}/>
+          <input
+            required
+            min={0}
+            id="duration"
+            type="number"
+            onChange={(e) => handleUpdatedValues("duration", e.target.value)}
+            value={formValues["duration"]}
+          />
         </p>
       </div>
     </section>
